@@ -1,9 +1,7 @@
-[gd_scene load_steps=22 format=3 uid="uid://be1dqmtf5iy3b"]
+[gd_scene load_steps=10 format=3 uid="uid://be1dqmtf5iy3b"]
 
 [ext_resource type="Texture2D" uid="uid://dprd4wtat3ufl" path="res://assets/sprites/Tiles.png" id="1_0my2j"]
-[ext_resource type="Texture2D" uid="uid://cdaju8m3ij5gq" path="res://assets/sprites/Background.png" id="1_761n4"]
 [ext_resource type="PackedScene" uid="uid://gu852a35pbo5" path="res://assets/scenes/player.tscn" id="2_lma7q"]
-[ext_resource type="Texture2D" uid="uid://c7endpvn43p0h" path="res://assets/sprites/player/_Idle.png" id="3_gco0n"]
 [ext_resource type="Texture2D" uid="uid://bc4vibtbv1v2d" path="res://assets/sprites/Buildings.png" id="3_w1gvw"]
 [ext_resource type="Script" path="res://assets/scripts/Camera2D.gd" id="5_a4sxw"]
 
@@ -860,93 +858,10 @@ sources/1 = SubResource("TileSetAtlasSource_ycaqu")
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_fi1oj"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_6mwsq"]
-atlas = ExtResource("3_gco0n")
-region = Rect2(0, 0, 120, 80)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0dmr3"]
-atlas = ExtResource("3_gco0n")
-region = Rect2(120, 0, 120, 80)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_furi6"]
-atlas = ExtResource("3_gco0n")
-region = Rect2(240, 0, 120, 80)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_02ngv"]
-atlas = ExtResource("3_gco0n")
-region = Rect2(360, 0, 120, 80)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qjei0"]
-atlas = ExtResource("3_gco0n")
-region = Rect2(480, 0, 120, 80)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_py7hi"]
-atlas = ExtResource("3_gco0n")
-region = Rect2(600, 0, 120, 80)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_21eyf"]
-atlas = ExtResource("3_gco0n")
-region = Rect2(720, 0, 120, 80)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8rx10"]
-atlas = ExtResource("3_gco0n")
-region = Rect2(840, 0, 120, 80)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0tbya"]
-atlas = ExtResource("3_gco0n")
-region = Rect2(960, 0, 120, 80)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6qbts"]
-atlas = ExtResource("3_gco0n")
-region = Rect2(1080, 0, 120, 80)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_0ep34"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6mwsq")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0dmr3")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_furi6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_02ngv")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_qjei0")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_py7hi")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_21eyf")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8rx10")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0tbya")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6qbts")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_152m8"]
+normal = Vector2(0, 1)
 
 [node name="Game" type="Node2D"]
-
-[node name="TextureRect" type="TextureRect" parent="."]
-z_index = -3
-offset_left = -721.0
-offset_top = -240.0
-offset_right = -241.0
-offset_bottom = 32.0
-texture = ExtResource("1_761n4")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_cgu06")
@@ -968,7 +883,6 @@ script = ExtResource("5_a4sxw")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource("WorldBoundaryShape2D_fi1oj")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-428, -42)
-sprite_frames = SubResource("SpriteFrames_0ep34")
-autoplay = "default"
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, -371)
+shape = SubResource("WorldBoundaryShape2D_152m8")

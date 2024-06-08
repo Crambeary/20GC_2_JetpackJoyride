@@ -1,0 +1,141 @@
+[gd_scene load_steps=10 format=3 uid="uid://45e8ckktcnb7"]
+
+[ext_resource type="Texture2D" uid="uid://ci3es8v4h38bl" path="res://assets/sprites/KnightMenu.png" id="1_0j4fd"]
+[ext_resource type="Script" path="res://assets/scripts/main_menu.gd" id="1_c5pyb"]
+[ext_resource type="AudioStream" uid="uid://dc1pbscew2dt4" path="res://assets/sounds/music/Three Red Hearts - Candy.ogg" id="3_2hkxr"]
+[ext_resource type="FontFile" uid="uid://7j11auq8kx84" path="res://assets/fonts/DungeonFont.ttf" id="3_2y0dw"]
+
+[sub_resource type="Animation" id="Animation_1bvxs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasModulate:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_15184"]
+resource_name = "fade_to_black_transition"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasModulate:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 1)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"start_game"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_s0ele"]
+_data = {
+"RESET": SubResource("Animation_1bvxs"),
+"fade_to_black_transition": SubResource("Animation_15184")
+}
+
+[sub_resource type="InputEventKey" id="InputEventKey_fm8ri"]
+device = -1
+keycode = 4194309
+
+[sub_resource type="Shortcut" id="Shortcut_kkkal"]
+events = [SubResource("InputEventKey_fm8ri")]
+
+[node name="MarginContainer" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_c5pyb")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Scene" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("1_0j4fd")
+stretch_mode = 3
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_s0ele")
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_2hkxr")
+autoplay = true
+bus = &"Music"
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 120
+theme_override_constants/margin_top = 80
+theme_override_constants/margin_right = 120
+theme_override_constants/margin_bottom = 80
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 100
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_2y0dw")
+theme_override_font_sizes/font_size = 48
+text = "Jetpack Joyride
+Medieval"
+
+[node name="High Score" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_2y0dw")
+theme_override_font_sizes/font_size = 48
+text = "High Score: 0"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Start" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_2y0dw")
+theme_override_font_sizes/font_size = 32
+shortcut = SubResource("Shortcut_kkkal")
+text = "start"
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/Start" to="." method="_on_start_pressed"]

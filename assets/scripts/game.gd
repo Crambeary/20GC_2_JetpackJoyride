@@ -14,5 +14,5 @@ func _process(delta):
 	pass
 
 func _hit():
-	print("Hit")
+	player.death()
 	pass

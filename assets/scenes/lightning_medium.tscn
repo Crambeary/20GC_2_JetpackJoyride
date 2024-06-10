@@ -1,0 +1,55 @@
+[gd_scene load_steps=8 format=3 uid="uid://bmiycrve0vvqh"]
+
+[ext_resource type="Texture2D" uid="uid://ds555tbnvu6aj" path="res://assets/sprites/obstacles/Lightning Trap - Level 2 - 4frame.png" id="1_v0jru"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fbvsd"]
+atlas = ExtResource("1_v0jru")
+region = Rect2(0, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3570k"]
+atlas = ExtResource("1_v0jru")
+region = Rect2(192, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lqfld"]
+atlas = ExtResource("1_v0jru")
+region = Rect2(288, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8rvdd"]
+atlas = ExtResource("1_v0jru")
+region = Rect2(96, 0, 96, 96)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2ey51"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fbvsd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3570k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lqfld")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8rvdd")
+}],
+"loop": true,
+"name": &"on",
+"speed": 12.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7yd2n"]
+size = Vector2(30, 96)
+
+[node name="Lightning Medium" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_2ey51")
+animation = &"on"
+autoplay = "on"
+frame_progress = 0.00796696
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_7yd2n")

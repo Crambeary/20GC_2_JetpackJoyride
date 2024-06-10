@@ -1,5 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://bmiycrve0vvqh"]
+[gd_scene load_steps=9 format=3 uid="uid://bmiycrve0vvqh"]
 
+[ext_resource type="Script" path="res://assets/scenes/obstacle.gd" id="1_e4pho"]
 [ext_resource type="Texture2D" uid="uid://ds555tbnvu6aj" path="res://assets/sprites/obstacles/Lightning Trap - Level 2 - 4frame.png" id="1_v0jru"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fbvsd"]
@@ -42,6 +43,7 @@ animations = [{
 size = Vector2(30, 96)
 
 [node name="Lightning Medium" type="Node2D"]
+script = ExtResource("1_e4pho")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_2ey51")
@@ -51,5 +53,7 @@ frame_progress = 0.00796696
 
 [node name="Area2D" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" groups=["damage"]]
 shape = SubResource("RectangleShape2D_7yd2n")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

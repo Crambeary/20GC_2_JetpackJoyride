@@ -1,6 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://be1dqmtf5iy3b"]
+[gd_scene load_steps=14 format=3 uid="uid://be1dqmtf5iy3b"]
 
 [ext_resource type="Texture2D" uid="uid://dprd4wtat3ufl" path="res://assets/sprites/Tiles.png" id="1_0my2j"]
+[ext_resource type="Script" path="res://assets/scripts/game.gd" id="1_ejyuu"]
 [ext_resource type="PackedScene" uid="uid://gu852a35pbo5" path="res://assets/scenes/player.tscn" id="2_lma7q"]
 [ext_resource type="Texture2D" uid="uid://bc4vibtbv1v2d" path="res://assets/sprites/Buildings.png" id="3_w1gvw"]
 [ext_resource type="PackedScene" uid="uid://kyssh27th3ut" path="res://assets/scenes/lightning_small.tscn" id="5_8mxn7"]
@@ -865,6 +866,7 @@ sources/1 = SubResource("TileSetAtlasSource_ycaqu")
 normal = Vector2(0, 1)
 
 [node name="Game" type="Node2D"]
+script = ExtResource("1_ejyuu")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_cgu06")
@@ -891,10 +893,10 @@ position = Vector2(0, -371)
 shape = SubResource("WorldBoundaryShape2D_152m8")
 
 [node name="Lightning Small" parent="." instance=ExtResource("5_8mxn7")]
-position = Vector2(425, -57)
+position = Vector2(424, -32)
 
 [node name="Lightning Medium" parent="." instance=ExtResource("6_tjdpa")]
-position = Vector2(769, -82)
+position = Vector2(765, -48)
 
-[node name="Lightning Small2" parent="." instance=ExtResource("7_xe6ou")]
-position = Vector2(1264, -110)
+[node name="Lightning Long" parent="." instance=ExtResource("7_xe6ou")]
+position = Vector2(1267, -58)
